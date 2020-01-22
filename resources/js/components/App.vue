@@ -1,6 +1,6 @@
 <template>
     <div>
-        Content here...
+        Hot Content here...
     </div>
 </template>
 
