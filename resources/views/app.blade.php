@@ -12,7 +12,7 @@
     </head>
     <body>
         <div id="app">
-            Content here
+            <App></App>
         </div>
     </body>
 </html>
