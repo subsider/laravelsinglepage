@@ -1,10 +1,19 @@
 const mix = require('laravel-mix');
+const purgecss = require('@fullhuman/postcss-purgecss')({
+    content: [
+        './resources/** /*.blade.php',
+        './resources/** /*.vue',
+    ],
+
+    defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+});
 
 mix.js('resources/js/app.js', 'public/js')
-   .postCss('resources/css/app.css', 'public/css', [
-       require('tailwindcss'),
-       require('autoprefixer')
-   ]);
+    .postCss('resources/css/app.css', 'public/css', [
+        require('tailwindcss'),
+        ...mix.inProduction() ? [purgecss] : [],
+        require('autoprefixer')
+    ]);
 
 mix.webpackConfig({
     resolve: {
